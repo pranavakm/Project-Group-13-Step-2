@@ -101,3 +101,11 @@ class TestInput_Handler(unittest.TestCase):
             self.assertIsInstance(comments, str)
             self.assertNotEqual(comments, "")
             self.assertRegex(comments, r"\w+")
+    
+    def test_get_assigned_input(self):
+        with patch("builtins.input", return_value="John Doe"):
+            assigned_to = get_assigned_input()
+            self.assertEqual(assigned_to, "John Doe")
+            self.assertIsInstance(assigned_to, str)
+            self.assertNotEqual(assigned_to, "")
+            self.assertRegex(assigned_to, r"\w+")
