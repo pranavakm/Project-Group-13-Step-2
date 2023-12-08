@@ -54,3 +54,18 @@ class TestInput_Handler(unittest.TestCase):
             self.assertIsInstance(project_name, str)
             self.assertEqual(project_name, "")
             self.assertNotRegex(project_name, r"\w+")
+    
+    def test_get_task_input(self):
+        with patch("builtins.input", return_value="TaskY"):
+            task_name = get_task_input()
+            self.assertEqual(task_name, "TaskY")
+            self.assertIsInstance(task_name, str)
+            self.assertNotEqual(task_name, "")
+            self.assertRegex(task_name, r"\w+")
+
+        with patch("builtins.input", return_value=""):
+            task_name = get_task_input()
+            self.assertEqual(task_name, "")
+            self.assertIsInstance(task_name, str)
+            self.assertEqual(task_name, "")
+            self.assertNotRegex(task_name, r"\w+")
