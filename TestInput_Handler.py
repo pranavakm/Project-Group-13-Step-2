@@ -39,3 +39,18 @@ class TestInput_Handler(unittest.TestCase):
             self.assertIsInstance(user_choice, int)
             self.assertGreaterEqual(user_choice, 0)
             self.assertLessEqual(user_choice, 9)
+    
+    def test_get_project_input(self):
+        with patch("builtins.input", return_value="ProjectX"):
+            project_name = get_project_input()
+            self.assertEqual(project_name, "ProjectX")
+            self.assertIsInstance(project_name, str)
+            self.assertNotEqual(project_name, "")
+            self.assertRegex(project_name, r"\w+")
+
+        with patch("builtins.input", return_value=""):
+            project_name = get_project_input()
+            self.assertEqual(project_name, "")
+            self.assertIsInstance(project_name, str)
+            self.assertEqual(project_name, "")
+            self.assertNotRegex(project_name, r"\w+")
