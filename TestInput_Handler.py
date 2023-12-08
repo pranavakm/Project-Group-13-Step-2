@@ -93,3 +93,11 @@ class TestInput_Handler(unittest.TestCase):
             self.assertIsInstance(duration, str)
             self.assertNotEqual(duration, "")
             self.assertRegex(duration, r"\d+")
+    
+    def test_get_comments_input(self):
+        with patch("builtins.input", return_value="Important task"):
+            comments = get_comments_input()
+            self.assertEqual(comments, "Important task")
+            self.assertIsInstance(comments, str)
+            self.assertNotEqual(comments, "")
+            self.assertRegex(comments, r"\w+")
