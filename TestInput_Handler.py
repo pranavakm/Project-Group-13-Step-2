@@ -1,0 +1,41 @@
+import unittest
+from unittest.mock import patch
+from projecttracker.utils.input_handler import (
+    get_user_choice,
+    get_project_input,
+    get_task_input,
+    get_projectID_input,
+    get_priority_input,
+    get_duration_input,
+    get_comments_input,
+    get_assigned_input,
+    get_start_date_input,
+    get_deadline_input,
+    get_owner_input,
+    get_project_task_id,
+    any_key_continue,
+    get_file_path,
+)
+
+class TestInput_Handler(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        print("Setting up class...")
+
+    @classmethod
+    def tearDownClass(cls):
+        print("Tearing down class...")
+
+    def setUp(self):
+        print("Setting up test...")
+
+    def tearDown(self):
+        print("Tearing down test...")
+
+    def test_get_user_choice_valid_input(self):
+        with patch("builtins.input", return_value="1"):
+            user_choice = get_user_choice()
+            self.assertEqual(user_choice, 1)
+            self.assertIsInstance(user_choice, int)
+            self.assertGreaterEqual(user_choice, 0)
+            self.assertLessEqual(user_choice, 9)
