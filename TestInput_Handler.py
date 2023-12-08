@@ -77,3 +77,11 @@ class TestInput_Handler(unittest.TestCase):
             self.assertIsInstance(project_id, str)
             self.assertNotEqual(project_id, "")
             self.assertRegex(project_id, r"\w+")
+    
+    def test_get_priority_input_valid_input(self):
+        with patch("builtins.input", return_value="low"):
+            priority = get_priority_input()
+            self.assertEqual(priority, "low")
+            self.assertIsInstance(priority, str)
+            self.assertIn(priority, ["low", "medium", "high"])
+            self.assertRegex(priority, r"\w+")
