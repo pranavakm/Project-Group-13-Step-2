@@ -85,3 +85,11 @@ class TestInput_Handler(unittest.TestCase):
             self.assertIsInstance(priority, str)
             self.assertIn(priority, ["low", "medium", "high"])
             self.assertRegex(priority, r"\w+")
+    
+    def test_get_duration_input(self):
+        with patch("builtins.input", return_value="3"):
+            duration = get_duration_input()
+            self.assertEqual(duration, "3")
+            self.assertIsInstance(duration, str)
+            self.assertNotEqual(duration, "")
+            self.assertRegex(duration, r"\d+")
