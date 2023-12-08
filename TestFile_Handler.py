@@ -48,3 +48,11 @@ class TestFile_Handler(unittest.TestCase):
         # Clean up after each test case
         # Delete any temporary files or resources created during testing
         print("Tear Down")
+
+    def test_read_from_json(self):
+        data = read_from_json(self.file_name)
+        self.assertEqual(data[0]['projectID'], self.test_data['projectID'])
+        self.assertEqual(data[0]['projectPriority'], self.test_data['projectPriority'])
+        self.assertEqual(data[0]['projectStatus'], self.test_data['projectStatus'])
+        self.assertEqual(data[0]['projectDuration'], self.test_data['projectDuration'])
+    
