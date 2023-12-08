@@ -27,3 +27,24 @@ class TestFile_Handler(unittest.TestCase):
         cls.data = pd.DataFrame({"name": ["Bob", "Charlie"], "age": [22, 35]})
         current_directory = os.getcwd()
         cls.csv_file_path = current_directory[2:]
+
+    def setUp(self):
+        # Initialize values for each test case
+        # You can create temporary files or any other setup needed for testing
+        self.test_data = {
+            'projectID': 'P0001',
+            'projectName': 'Test Project 1',
+            'projectPriority': 'High',
+            'projectDuration': '4',
+            'projectComments': 'Created for unit testing',
+            'assignedToProjectTL': 'Team Lead 1',
+            'projectStartDate': '2023-11-11',
+            'projectDeadline': '2023-11-30',
+            'projectOwner': 'Project Owner 1',
+            'projectStatus': 'Not Started'
+        }
+
+    def tearDown(self):
+        # Clean up after each test case
+        # Delete any temporary files or resources created during testing
+        print("Tear Down")
