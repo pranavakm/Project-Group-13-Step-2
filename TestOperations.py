@@ -69,3 +69,11 @@ class TestOperations(unittest.TestCase):
         self.assertEqual(self.new_project.projectStatus, "Not Started")
         self.assertEqual(self.new_project.projectPriority, "High")
         self.assertEqual(self.new_project.projectOwner, "John Doe")
+
+    def test_add_task(self):
+        self.assertEqual(self.new_task.taskName, "Test Task")
+        self.assertEqual(self.new_task.taskStatus, "Not Started")
+        self.assertEqual(self.new_task.taskPriority, "High")
+        self.assertEqual(self.new_task.assignedToTask, "User 1")
+
+    
