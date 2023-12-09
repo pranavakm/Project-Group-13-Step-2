@@ -79,6 +79,13 @@ class TestFile_Handler(unittest.TestCase):
         self.assertEqual(os.path.getsize(self.delete_file_name), 0)
         self.assertIsNone(delete_all_objects("non_existent_file.json"))
 
+    def test_write_to_json_dict_write(self):
+        write_to_json_dict(self.dict_obj, self.dict_file_name, method='w')
+        result = read_from_json(self.dict_file_name)
+        self.assertEqual(result, [self.dict_obj])
+        self.assertIsInstance(result, list)
+        self.assertGreater(len(result), 0)
+        self.assertIn("name", result[0])
 
     def test_download_csv_file_created(self):
         download_csv(self.data, self.csv_file_path)
