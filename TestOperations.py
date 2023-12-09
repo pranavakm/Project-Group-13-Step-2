@@ -75,5 +75,15 @@ class TestOperations(unittest.TestCase):
         self.assertEqual(self.new_task.taskStatus, "Not Started")
         self.assertEqual(self.new_task.taskPriority, "High")
         self.assertEqual(self.new_task.assignedToTask, "User 1")
+    
+     def test_modify_task(self):
+        self.operations_instance.modify_item()
+        task_list = file_handler.read_from_json('task.json')
+        task1 = task_list[0]
+        self.assertEqual(task1['taskName'], 'Modified Task')
+        self.assertEqual(task1['taskPriority'], 'Low')
+        self.assertEqual(task1['assignedToTask'], 'Task Person 2')
+        self.assertEqual(task1['taskDuration'], 8)
+
 
     
