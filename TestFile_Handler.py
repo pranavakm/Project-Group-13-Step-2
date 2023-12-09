@@ -63,3 +63,18 @@ class TestFile_Handler(unittest.TestCase):
         self.assertIsInstance(result, list)
         self.assertGreater(len(result), 0)
         self.assertIn("projectID", result[0])
+
+    def test_delete_all_objects(self):
+        with open(self.delete_file_name, 'w') as test_file:
+            test_file.write("Test content")
+
+        # Call the function to delete data from the file
+        delete_all_objects(self.delete_file_name)
+
+        # Verify that the file still exists but is empty
+        with open(self.delete_file_name, 'r') as test_file:
+            file_content = test_file.read()
+            self.assertEqual(file_content, "")
+        self.assertTrue(os.path.exists(self.delete_file_name))
+        self.assertEqual(os.path.getsize(self.delete_file_name), 0)
+        self.assertIsNone(delete_all_objects("non_existent_file.json"))
