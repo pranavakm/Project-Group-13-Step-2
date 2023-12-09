@@ -149,3 +149,18 @@ class TestInput_Handler(unittest.TestCase):
             self.assertIsInstance(user_input, str)
             self.assertEqual(user_input, "")
             self.assertNotRegex(user_input, r"\w+")
+    
+    def test_get_file_path(self):
+        with patch("builtins.input", return_value="/path/to/file.txt"):
+            file_path = get_file_path()
+            self.assertEqual(file_path, "/path/to/file.txt")
+            self.assertIsInstance(file_path, str)
+            self.assertNotEqual(file_path, "")
+            self.assertRegex(file_path, r"\w+")
+
+        with patch("builtins.input", return_value=""):
+            file_path = get_file_path()
+            self.assertEqual(file_path, "")
+            self.assertIsInstance(file_path, str)
+            self.assertEqual(file_path, "")
+            self.assertNotRegex(file_path, r"\w+")
