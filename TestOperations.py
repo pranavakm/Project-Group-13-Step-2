@@ -9,11 +9,9 @@ from projecttracker.utils import file_handler
 class TestOperations(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        # Perform setup tasks that apply to the entire test class
         cls.operations_instance = Operations()
 
     def setUp(self):
-        # Perform setup tasks that apply to each individual test case
         self.new_project = self.operations_instance.add_proj(
             Name="Test Project",
             Priority="High",
@@ -57,7 +55,17 @@ class TestOperations(unittest.TestCase):
             startDate="2023-01-02",
             Deadline="2023-02-08"
         )
+    
+    @classmethod
+    def tearDownClass(cls):
+        print('Tear down...')
 
     def tearDown(self):
         file_handler.delete_all_objects('project.json')
         file_handler.delete_all_objects('task.json')
+    
+    def test_add_proj(self):
+        self.assertEqual(self.new_project.projectName, "Test Project")
+        self.assertEqual(self.new_project.projectStatus, "Not Started")
+        self.assertEqual(self.new_project.projectPriority, "High")
+        self.assertEqual(self.new_project.projectOwner, "John Doe")
