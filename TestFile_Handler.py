@@ -94,3 +94,12 @@ class TestFile_Handler(unittest.TestCase):
         self.assertTrue(os.path.isfile(file_path))
         self.assertGreater(os.path.getsize(file_path), 0)
         self.assertTrue(file_path.endswith(".csv"))
+
+    def test_download_csv(self):
+        download_csv(self.data, self.csv_file_path)
+        file_path = f"{self.csv_file_path}/project_details.csv"
+        result_data = pd.read_csv(file_path)
+        pd.testing.assert_frame_equal(result_data, self.data)
+        self.assertIsInstance(result_data, pd.DataFrame)
+        self.assertEqual(result_data.shape, self.data.shape)
+        self.assertListEqual(list(result_data.columns), list(self.data.columns))
