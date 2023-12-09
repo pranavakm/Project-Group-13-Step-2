@@ -125,3 +125,11 @@ class TestInput_Handler(unittest.TestCase):
             self.assertIsInstance(deadline, str)
             self.assertNotEqual(deadline, "")
             self.assertRegex(deadline, r"\d{4}-\d{2}-\d{2}")
+    
+    def test_get_owner_input(self):
+        with patch("builtins.input", return_value="Jane Smith"):
+            owner_name = get_owner_input()
+            self.assertEqual(owner_name, "Jane Smith")
+            self.assertIsInstance(owner_name, str)
+            self.assertNotEqual(owner_name, "")
+            self.assertRegex(owner_name, r"\w+")
