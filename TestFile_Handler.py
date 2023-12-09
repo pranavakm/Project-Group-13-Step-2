@@ -103,3 +103,14 @@ class TestFile_Handler(unittest.TestCase):
         self.assertIsInstance(result_data, pd.DataFrame)
         self.assertEqual(result_data.shape, self.data.shape)
         self.assertListEqual(list(result_data.columns), list(self.data.columns))
+
+    @classmethod
+    def tearDownClass(cls):
+        # Clean up after all test cases in the class have run
+        # Delete any files or resources created during testing
+        try:
+            os.remove(cls.file_name)
+            os.remove(cls.dict_file_name)
+            os.remove(cls.delete_file_name)
+        except FileNotFoundError:
+            pass
