@@ -141,3 +141,11 @@ class TestInput_Handler(unittest.TestCase):
             self.assertIsInstance(project_task_id, str)
             self.assertNotEqual(project_task_id, "")
             self.assertRegex(project_task_id, r"\w+")
+    
+    def test_any_key_continue(self):
+        with patch("builtins.input", return_value=""):
+            user_input = any_key_continue()
+            self.assertEqual(user_input, "")
+            self.assertIsInstance(user_input, str)
+            self.assertEqual(user_input, "")
+            self.assertNotRegex(user_input, r"\w+")
