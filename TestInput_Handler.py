@@ -117,3 +117,11 @@ class TestInput_Handler(unittest.TestCase):
             self.assertIsInstance(start_date, str)
             self.assertNotEqual(start_date, "")
             self.assertRegex(start_date, r"\d{4}-\d{2}-\d{2}")
+    
+    def test_get_deadline_input(self):
+        with patch("builtins.input", return_value="2023-02-28"):
+            deadline = get_deadline_input()
+            self.assertEqual(deadline, "2023-02-28")
+            self.assertIsInstance(deadline, str)
+            self.assertNotEqual(deadline, "")
+            self.assertRegex(deadline, r"\d{4}-\d{2}-\d{2}")
