@@ -78,3 +78,12 @@ class TestFile_Handler(unittest.TestCase):
         self.assertTrue(os.path.exists(self.delete_file_name))
         self.assertEqual(os.path.getsize(self.delete_file_name), 0)
         self.assertIsNone(delete_all_objects("non_existent_file.json"))
+
+
+    def test_download_csv_file_created(self):
+        download_csv(self.data, self.csv_file_path)
+        file_path = f"{self.csv_file_path}/project_details.csv"
+        self.assertTrue(os.path.exists(file_path))
+        self.assertTrue(os.path.isfile(file_path))
+        self.assertGreater(os.path.getsize(file_path), 0)
+        self.assertTrue(file_path.endswith(".csv"))
