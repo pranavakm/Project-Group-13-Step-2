@@ -56,3 +56,10 @@ class TestFile_Handler(unittest.TestCase):
         self.assertEqual(data[0]['projectStatus'], self.test_data['projectStatus'])
         self.assertEqual(data[0]['projectDuration'], self.test_data['projectDuration'])
     
+    def test_write_to_json(self):
+        write_to_json(self.obj, self.file_name)
+        result = read_from_json(self.file_name)
+        self.assertEqual(result[0], self.test_data)
+        self.assertIsInstance(result, list)
+        self.assertGreater(len(result), 0)
+        self.assertIn("projectID", result[0])
