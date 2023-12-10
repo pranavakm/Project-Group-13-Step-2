@@ -113,7 +113,9 @@ class TestOperations(unittest.TestCase):
         
         self.assertNotEqual(self.new_project2.projectID, deleted_project_id)
     
-    def test_delete_task(self):
+    @patch('builtins.input', side_effect=['T0001', 'Y'])
+    @patch('sys.stdout', new_callable=StringIO)
+    def test_delete_task(self, mock_stdout, mock_input):
         t_list = file_handler.read_from_json('task.json')
         task1 = t_list[0]
         
