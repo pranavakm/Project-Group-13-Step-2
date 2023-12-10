@@ -76,6 +76,15 @@ class TestOperations(unittest.TestCase):
         self.assertEqual(self.new_task.taskPriority, "High")
         self.assertEqual(self.new_task.assignedToTask, "User 1")
     
+    def test_modify_proj(self):
+        self.operations_instance.modify_item()
+        project_list = file_handler.read_from_json('project.json')
+        proj1 = project_list[0]
+        self.assertEqual(proj1['projectName'], 'Modified Project')
+        self.assertEqual(proj1['projectPriority'], 'Medium')
+        self.assertEqual(proj1['projectOwner'], 'Owner 2')
+        self.assertEqual(proj1['projectDuration'], 12)
+    
      def test_modify_task(self):
         self.operations_instance.modify_item()
         task_list = file_handler.read_from_json('task.json')
