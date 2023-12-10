@@ -94,6 +94,19 @@ class TestOperations(unittest.TestCase):
         self.assertEqual(task1['assignedToTask'], 'Task Person 2')
         self.assertEqual(task1['taskDuration'], 8)
     
+    def test_delete_proj(self):
+        proj_list = file_handler.read_from_json('project.json')
+        proj1 = proj_list[0]
+        
+        deleted_project_id = self.operations_instance.delete_item()
+        self.assertEqual(deleted_project_id, self.new_project.projectID)
+        
+        project_list = file_handler.read_from_json('project.json')
+        self.assertEqual(len(project_list), len(proj_list) - 1) 
+        self.assertNotIn(proj1, project_list)
+        
+        self.assertNotEqual(self.new_project2.projectID, deleted_project_id)
+    
     def test_view(self):
         df = self.operations_instance.view()
         self.assertTrue(isinstance(df, pd.DataFrame))
