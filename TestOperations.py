@@ -84,6 +84,13 @@ class TestOperations(unittest.TestCase):
         self.assertEqual(task1['taskPriority'], 'Low')
         self.assertEqual(task1['assignedToTask'], 'Task Person 2')
         self.assertEqual(task1['taskDuration'], 8)
+    
+    def test_view(self):
+        df = self.operations_instance.view()
+        self.assertTrue(isinstance(df, pd.DataFrame))
+        self.assertFalse(df.empty)
+        self.assertIn(self.new_project.projectID, df['projectID'].values)
+        self.assertIn(self.new_task.taskID, df['taskID'].values)
 
 
     
