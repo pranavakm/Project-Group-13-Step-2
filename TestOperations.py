@@ -87,7 +87,9 @@ class TestOperations(unittest.TestCase):
         self.assertEqual(proj1['projectOwner'], 'Owner 2')
         self.assertEqual(proj1['projectDuration'], 12)
     
-     def test_modify_task(self):
+    @patch('builtins.input', side_effect=['T0001', 'taskName', 'Modified Task', 'Y', 'taskPriority', 'Low', 'Y', 'assignedToTask', 'Task Person 2', 'Y', 'taskDuration', 8, 'N'])
+    @patch('sys.stdout', new_callable=StringIO)
+    def test_modify_task(self, mock_stdout, mock_input):
         self.operations_instance.modify_item()
         task_list = file_handler.read_from_json('task.json')
         task1 = task_list[0]
