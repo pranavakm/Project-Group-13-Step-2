@@ -1,7 +1,7 @@
 import unittest
-from testfile import TestFile_Handler
-from testinput import TestInput_Handler
-from testop import TestOperations
+from TestFile_Handler import TestFile_Handler
+from TestInput_Handler import TestInput_Handler
+from TestOperations import TestOperations
 
 def projecttracker_test_suite():
     test_suite = unittest.TestSuite()
