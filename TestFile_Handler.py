@@ -8,7 +8,6 @@ from projecttracker.management.operations import Operations
 class TestFile_Handler(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        # Initialize common values for the test class
         cls.obj = Operations() 
         cls.obj.add_proj(**{
             'Name': 'Test Project 1',
@@ -29,8 +28,6 @@ class TestFile_Handler(unittest.TestCase):
         cls.csv_file_path = current_directory[2:]
 
     def setUp(self):
-        # Initialize values for each test case
-        # You can create temporary files or any other setup needed for testing
         self.test_data = {
             'projectID': 'P0001',
             'projectName': 'Test Project 1',
@@ -45,8 +42,6 @@ class TestFile_Handler(unittest.TestCase):
         }
 
     def tearDown(self):
-        # Clean up after each test case
-        # Delete any temporary files or resources created during testing
         print("Tear Down")
 
     def test_read_from_json(self):
@@ -68,10 +63,8 @@ class TestFile_Handler(unittest.TestCase):
         with open(self.delete_file_name, 'w') as test_file:
             test_file.write("Test content")
 
-        # Call the function to delete data from the file
         delete_all_objects(self.delete_file_name)
 
-        # Verify that the file still exists but is empty
         with open(self.delete_file_name, 'r') as test_file:
             file_content = test_file.read()
             self.assertEqual(file_content, "")
@@ -106,8 +99,6 @@ class TestFile_Handler(unittest.TestCase):
 
     @classmethod
     def tearDownClass(cls):
-        # Clean up after all test cases in the class have run
-        # Delete any files or resources created during testing
         try:
             os.remove(cls.file_name)
             os.remove(cls.dict_file_name)
