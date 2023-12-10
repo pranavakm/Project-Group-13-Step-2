@@ -98,7 +98,9 @@ class TestOperations(unittest.TestCase):
         self.assertEqual(task1['assignedToTask'], 'Task Person 2')
         self.assertEqual(task1['taskDuration'], 8)
     
-    def test_delete_proj(self):
+    @patch('builtins.input', side_effect=['P0001', 'Y'])
+    @patch('sys.stdout', new_callable=StringIO)
+    def test_delete_proj(self, mock_stdout, mock_input):
         proj_list = file_handler.read_from_json('project.json')
         proj1 = proj_list[0]
         
