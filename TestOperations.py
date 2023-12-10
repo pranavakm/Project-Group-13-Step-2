@@ -134,6 +134,3 @@ class TestOperations(unittest.TestCase):
         self.assertFalse(df.empty)
         self.assertIn(self.new_project.projectID, df['projectID'].values)
         self.assertIn(self.new_task.taskID, df['taskID'].values)
-
-
-    
