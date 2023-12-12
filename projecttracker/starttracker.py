@@ -190,7 +190,7 @@ def add_task(op):
     while True:
         try:
             start_date = input_handler.get_start_date_input()
-            start_date = datetime.strptime(start_date, '%Y-%m-%d')
+            s_date = datetime.strptime(start_date, '%Y-%m-%d')
             break
         except ValueError:
             print('Invalid date format. Please enter the date in YYYY-MM-DD format.')
@@ -198,8 +198,8 @@ def add_task(op):
     while True:
         try:
             deadline = input_handler.get_deadline_input()
-            deadline = datetime.strptime(deadline, '%Y-%m-%d')
-            if deadline > start_date:
+            d = datetime.strptime(deadline, '%Y-%m-%d')
+            if d > s_date:
                 break
             else:
                 print('Deadline must be greater than the start date.')
